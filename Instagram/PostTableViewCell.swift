@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// PostDataオブジェクトの内容をセルに反映するクラス
+/// PostDataオブジェクトの内容をテーブルのセルに反映するクラス
 class PostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var postImageView: UIImageView!
@@ -16,6 +16,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var commentLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,11 +32,15 @@ class PostTableViewCell: UITableViewCell {
     
     /// PostDataの内容をセルに反映
     func setPostData(postData: PostData) {
-        self.postImageView.image = postData.image                           // 画像
+        // 画像
+        self.postImageView.image = postData.image
         
-        self.captionLabel.text = "\(postData.name!) : \(postData.caption!)" // キャプション
+        // キャプション
+        self.captionLabel.text = "\(postData.name!) : \(postData.caption!)"
+        
+        // いいねの数
         let likeNumber = postData.likes.count
-        likeLabel.text = "\(likeNumber)"                                    // いいねの数
+        likeLabel.text = "\(likeNumber)"
         
         // 日付のフォーマット
         let formatter = DateFormatter()
@@ -55,5 +61,13 @@ class PostTableViewCell: UITableViewCell {
             let buttonImage = UIImage(named: "like_none")
             self.likeButton.setImage(buttonImage, for: UIControlState.normal)
         }
+        
+        // コメント
+        var commentArray: [String] = []
+        for value in postData.comments {
+            commentArray.append("- " + value) // リストマーク
+        }
+        let comments = commentArray.joined(separator: "\n") // 1コメ毎に改行
+        self.commentLabel.text = comments
     }
 }

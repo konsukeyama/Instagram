@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A21BCCED1ECBA64A0099A7D6 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21BCCEC1ECBA64A0099A7D6 /* CommentViewController.swift */; };
 		A295AB181EC84A3C00083A2B /* AdobeCreativeSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A295AB141EC849EB00083A2B /* AdobeCreativeSDKCore.framework */; };
 		A295AB191EC84A3C00083A2B /* AdobeCreativeSDKCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A295AB141EC849EB00083A2B /* AdobeCreativeSDKCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A295AB1B1EC84A4200083A2B /* AdobeCreativeSDKImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A295AB151EC849EB00083A2B /* AdobeCreativeSDKImage.framework */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		5849954E6F2A9BAEAC1023F3 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		9591C5ACAAF7562C20BAF569 /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A21BCCEC1ECBA64A0099A7D6 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		A295AB141EC849EB00083A2B /* AdobeCreativeSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AdobeCreativeSDKCore.framework; sourceTree = "<group>"; };
 		A295AB151EC849EB00083A2B /* AdobeCreativeSDKImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AdobeCreativeSDKImage.framework; sourceTree = "<group>"; };
 		A295AB1D1EC84B3300083A2B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -172,10 +174,11 @@
 				A2B395B21EC698A90060A97F /* ViewController.swift */,
 				A2B395B41EC698A90060A97F /* Main.storyboard */,
 				A2B395C21EC699650060A97F /* LoginViewController.swift */,
-				A2B395C41EC699790060A97F /* HomeViewController.swift */,
+				A2B395CA1EC699B60060A97F /* SettingViewController.swift */,
 				A2B395C61EC699980060A97F /* ImageSelectViewController.swift */,
 				A2B395C81EC699A60060A97F /* PostViewController.swift */,
-				A2B395CA1EC699B60060A97F /* SettingViewController.swift */,
+				A2B395C41EC699790060A97F /* HomeViewController.swift */,
+				A21BCCEC1ECBA64A0099A7D6 /* CommentViewController.swift */,
 				A295AB371EC887C900083A2B /* Const.swift */,
 				A295AB391EC8956F00083A2B /* PostData.swift */,
 				A295AB3B1EC8F3D200083A2B /* PostTableViewCell.swift */,
@@ -340,6 +343,7 @@
 				A295AB3D1EC8F3D200083A2B /* PostTableViewCell.swift in Sources */,
 				A2B395CB1EC699B60060A97F /* SettingViewController.swift in Sources */,
 				A2B395C51EC699790060A97F /* HomeViewController.swift in Sources */,
+				A21BCCED1ECBA64A0099A7D6 /* CommentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

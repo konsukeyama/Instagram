@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     /// ログインボタン
     @IBAction func handleLoginButton(_ sender: Any) {
         if let address = mailAddressTextField.text, let password = passwordTextField.text {
-            // アドレスとパスワードの値を変数へセット（セット失敗の場合はfalse＝何もしない）
+            // アドレスとパスワードの値を取得成功した場合（取得失敗の場合はfalse＝何もしない）
             
             //--- バリデート
             if address.characters.isEmpty || password.characters.isEmpty {
@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
             SVProgressHUD.show()
             
             //--- ログイン処理
-            // アドレスとパスワードでログイン実行。
+            // アドレスとパスワードでログイン実行
             FIRAuth.auth()?.signIn(withEmail: address, password: password) { user, error in
                 if let error = error {
                     // ログイン失敗の場合
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
     /// アカウント作成ボタン
     @IBAction func handleCreateAcountButton(_ sender: Any) {
         if let address = mailAddressTextField.text, let password = passwordTextField.text, let displayName = displayNameTextField.text {
-            // 各TextFieldの値を変数へセット（セット失敗の場合はfalse＝何もしない）
+            // 各TextFieldの値を取得成功した場合（取得失敗の場合はfalse＝何もしない）
             
             //--- バリデート
             if address.characters.isEmpty || password.characters.isEmpty || displayName.characters.isEmpty {
@@ -125,13 +125,11 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
     /// キーボードを閉じる
     func dismissKeyboard() {
         view.endEditing(true)
     }
     
-
     /*
     // MARK: - Navigation
 

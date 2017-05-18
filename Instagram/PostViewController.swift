@@ -23,10 +23,10 @@ class PostViewController: UIViewController {
     @IBAction func handlePostButton(_ sender: Any) {
         // ImageViewから画像を取得する
         let imageData = UIImageJPEGRepresentation(imageView.image!, 0.5) // UIImageをJPG変換（第2引数は圧縮率）
-        let imageString = imageData!.base64EncodedString(options: .lineLength64Characters) // JPGをBase64テキストに変換
+        let imageString = imageData!.base64EncodedString(options: .lineLength64Characters) // JPGをBase64文字列に変換
         
         // postDataに必要な情報を取得しておく
-        let time = NSDate.timeIntervalSinceReferenceDate    // 時間（Stringで保存するため timeIntervalSinceReferenceDate で取得）
+        let time = NSDate.timeIntervalSinceReferenceDate    // 時間（文字列で保存するため timeIntervalSinceReferenceDate で取得）
         let name = FIRAuth.auth()?.currentUser?.displayName
         
         // 辞書（連想配列）を作成してFirebaseに保存する

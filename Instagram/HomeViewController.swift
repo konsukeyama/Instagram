@@ -57,8 +57,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     if let uid = FIRAuth.auth()?.currentUser?.uid {
                         // ログインユーザのID取得に成功した場合
                         let postData = PostData(snapshot: snapshot, myId: uid) // PostDataを作成（いいねボタン処理のため自分のIDを渡す）
-                        self.postArray.insert(postData, at: 0) // テーブルの先頭にデータを挿入
-                        self.tableView.reloadData()            // テーブルを更新する
+                        self.postArray.insert(postData, at: 0)                 // テーブルの先頭にデータを挿入
+                        self.tableView.reloadData()                            // テーブルを更新する
                     }
                 })
 
@@ -84,8 +84,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         // テーブルのデータをデリート＆インサートする
                         self.postArray.remove(at: index)           // データ削除
                         self.postArray.insert(postData, at: index) // データ挿入
-                        
-                        self.tableView.reloadData() // テーブルを更新する
+                        self.tableView.reloadData()                // テーブルを更新する
                     }
                 })
                 
@@ -119,9 +118,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath) as! PostTableViewCell
         cell.setPostData(postData: postArray[indexPath.row])
         
-        // セル内のいいねボタンのアクションをコードで実装する（handleButton()メソッドを呼ぶ）
+        // セル内の「いいね」ボタンのアクションをコードで実装する（handleButton()メソッドを呼ぶ）
         cell.likeButton.addTarget(self, action:#selector(handleButton(sender:event:)), for:  UIControlEvents.touchUpInside)
-        
+
+        // セル内の「コメント投稿」ボタンのアクションをコードで実装する（handleCommentButton()メソッドを呼ぶ）
+        cell.commentButton.addTarget(self, action:#selector(handleCommentButton(sender:event:)), for:  UIControlEvents.touchUpInside)
+
         return cell
     }
     
@@ -135,14 +137,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.deselectRow(at: indexPath as IndexPath, animated: true) // 何もせず選択状態を解除する
     }
     
-    /// セル内のボタンがタップされた時に呼ばれるメソッド
+    /// セル内の「いいね」ボタンがタップされた時に呼ばれるメソッド
     func handleButton(sender: UIButton, event:UIEvent) {
         print("DEBUG_PRINT: likeボタンがタップされました。")
         
         // タップされたセルのインデックスを求める
         let touch = event.allTouches?.first                  // タッチイベントを取得
         let point = touch!.location(in: self.tableView)      // タップした座標を取得
-        let indexPath = tableView.indexPathForRow(at: point) // タップしたセルのインデックスを返却
+        let indexPath = tableView.indexPathForRow(at: point) // 選択したセルのインデックスを返却
 
         // 配列からタップされたインデックスのデータを取り出す
         let postData = postArray[indexPath!.row]
@@ -173,12 +175,29 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
+    /// セル内の「コメント投稿」ボタンがタップされた時に呼ばれるメソッド
+    func handleCommentButton(sender: UIButton, event:UIEvent) {
+        print("DEBUG_PRINT: commentボタンがタップされました。")
+        
+        // タップされたセルのインデックスを求める
+        let touch = event.allTouches?.first                  // タッチイベントを取得
+        let point = touch!.location(in: self.tableView)      // タップした座標を取得
+        let indexPath = tableView.indexPathForRow(at: point) // 選択したセルのインデックスを返却
+
+        // 配列からタップされたインデックスのデータを取り出す
+        let postData = postArray[indexPath!.row]
+
+        // コメント投稿の画面を開く（postDataを遷移先へ渡す）
+        let commentViewController = self.storyboard?.instantiateViewController(withIdentifier: "Comment") as! CommentViewController
+        commentViewController.postData = postData
+        present(commentViewController, animated: true, completion: nil)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 

@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Tabバー初期化
+        // Tabバー初期設定
         setupTab()
     }
 
@@ -33,14 +33,13 @@ class ViewController: UIViewController {
         // ログイン判定
         if FIRAuth.auth()?.currentUser == nil {  // currentUserがnilならログインしていない
             // ログインしていなければログインの画面を表示　
-            // 注：「DispatchQueue.main.async」で viewDidAppear() 終了後に実行させる　※viewDidAppear内で present() が実行できないため
+            // 注：「DispatchQueue.main.async」で viewDidAppear() 終了後に実行させる（viewDidAppear内で present() が実行できないため）
             DispatchQueue.main.async {
                 let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login") // ログイン画面取得
                 self.present(loginViewController!, animated: true, completion: nil) // ログイン画面を表示
             }
         }
     }
-
     
     /// Tabバーの初期設定
     func setupTab() {

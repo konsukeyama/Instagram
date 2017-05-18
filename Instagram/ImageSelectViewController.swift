@@ -9,7 +9,7 @@
 import UIKit
 
 // UIImagePicker利用のため、UIImagePickerControllerDelegate, UINavigationControllerDelegate を継承
-// AdobeUXImageEditorViewControllerDelegate利用のため、AdobeUXImageEditorViewControllerDelegate を継承
+// Adobe Creative SDK利用のため、AdobeUXImageEditorViewControllerDelegate を継承
 class ImageSelectViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,AdobeUXImageEditorViewControllerDelegate {
 
     
@@ -17,10 +17,10 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func handleLibraryButton(_ sender: Any) {
         // ライブラリ（カメラロール）を指定してピッカーを開く
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
-            // ライブラリが利用可能な場合（isSourceTypeAvailableメソッドで確認）
+            // ライブラリが利用可能な場合（isSourceTypeAvailableメソッドで判定）
             let pickerController = UIImagePickerController()                             // ピッカーのインスタンス作成
             pickerController.delegate = self                                             // デリゲート
-            pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary // ソースタイプを指定
+            pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary // ソースタイプを指定（ライブラリ）
             self.present(pickerController, animated: true, completion: nil)              // ピッカーを表示する
         }
     }
@@ -30,10 +30,10 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
         // カメラを指定してピッカーを開く
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             // カメラが利用可能な場合
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.camera
-            self.present(pickerController, animated: true, completion: nil)
+            let pickerController = UIImagePickerController()                       // ピッカーのインスタンス作成
+            pickerController.delegate = self                                       // デリゲート
+            pickerController.sourceType = UIImagePickerControllerSourceType.camera // ソースタイプを指定（カメラ）
+            self.present(pickerController, animated: true, completion: nil)        // ピッカーを表示する
         }
     }
     

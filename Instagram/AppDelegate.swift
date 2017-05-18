@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase // Firebase
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        FIRApp.configure() // Firebaseの設定
+        // Firebaseの初期設定
+        FIRApp.configure()
         
         // Adobe Creative SDK
         AdobeUXAuthManager.shared().setAuthenticationParametersWithClientID("6b55732b502d45439aee11d3e89ec7f4", withClientSecret: "1606eacc-aec6-486a-909c-2a2c44fe8fd7")

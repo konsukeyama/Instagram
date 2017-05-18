@@ -37,7 +37,6 @@ class SettingViewController: UIViewController {
                     }
                     print("DEBUG_PRINT: [displayName = \(String(describing: user.displayName))]の設定に成功しました。")
                     
-                    // HUDで完了を知らせる
                     SVProgressHUD.showSuccess(withStatus: "表示名を変更しました")
                 }
             } else {
@@ -62,19 +61,24 @@ class SettingViewController: UIViewController {
         tabBarController.setSelectedIndex(0, animated: false)
     }
     
+    /// 画面表示完了後に呼ばれる
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // Do any additional setup after loading the view.
-
-        // 背景タップでキーボード閉じる
-        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissKeyboard))
-        self.view.addGestureRecognizer(tapGesture)
-
         // 表示名を取得してTextFieldに設定する
         let user = FIRAuth.auth()?.currentUser // ログインユーザー情報を取得
         if let user = user {
             displayNameTextField.text = user.displayName // テキストフィールドへ表示名を設定
         }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        // 背景タップでキーボード閉じる
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+        
     }
 
     override func didReceiveMemoryWarning() {
